@@ -147,7 +147,7 @@ export default function Footer() {
             className="font-body text-xs"
             style={{ color: "#57534E" }}
           >
-            Made by Abdi Prayuda (AbdiCytus)
+            Created by Abdi Prayuda (AbdiCytus)
           </p>
         </div>
       </div>
