@@ -45,3 +45,28 @@ html {
   box-shadow: 0 6px 24px rgba(249, 115, 22, 0.45);
   transform: translateY(-2px);
 }
+
+/* ── Product card hover shadow ── */
+/* Layered shadow appears on hover without JS */
+article.hover-card {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+article.hover-card:hover {
+  box-shadow: 0 8px 28px rgba(28, 25, 23, 0.1);
+}
+
+/* ── Section wave divider ── */
+/* Thin gradient separator between alternating sections */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E7E5E4 20%, #E7E5E4 80%, transparent);
+  margin: 0;
+}
+
+/* ── Focus ring for accessibility ── */
+/* Consistent focus ring using brand primary color */
+:focus-visible {
+  outline: 2px solid #F97316;
+  outline-offset: 3px;
+  border-radius: 4px;
+}

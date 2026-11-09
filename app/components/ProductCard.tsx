@@ -37,7 +37,7 @@ export default function ProductCard({
 
   return (
     <article
-      className="relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group"
+      className="hover-card relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group"
       style={{
         backgroundColor: "#FFFFFF",
         border: "1px solid #E7E5E4",

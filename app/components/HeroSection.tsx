@@ -156,7 +156,7 @@ export default function HeroSection() {
           </div>
 
           {/* ── Right: Mascot image ── */}
-          <div className="flex-shrink-0 relative">
+          <div className="flex-shrink-0 relative w-full md:w-auto flex justify-center">
             <ScrollAnimationWrapper direction="right" delay={100}>
               {/* Decorative circle behind mascot */}
               <div
@@ -181,7 +181,7 @@ export default function HeroSection() {
                   className="drop-shadow-2xl"
                   style={{
                     objectFit: "contain",
-                    maxWidth: "100%",
+                    width: "clamp(260px, 40vw, 420px)",
                     height: "auto",
                   }}
                 />

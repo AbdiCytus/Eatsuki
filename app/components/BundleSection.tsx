@@ -105,7 +105,7 @@ export default function BundleSection() {
                 border: "2px solid #FED7AA",
                 boxShadow:
                   "0 20px 60px rgba(249,115,22,0.12), 0 4px 16px rgba(28,25,23,0.06)",
-                padding: "48px",
+                padding: "clamp(28px, 5vw, 48px)",
               }}
             >
               {/* HEMAT badge — absolute top-right */}

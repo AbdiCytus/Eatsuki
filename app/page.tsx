@@ -17,10 +17,15 @@ export default function Home() {
     <main className="flex flex-col min-h-screen" style={{ backgroundColor: "#FAFAF9" }}>
       <Navbar />
       <HeroSection />
+      <div className="section-divider" />
       <AboutSection />
+      <div className="section-divider" />
       <MainProductsSection />
+      <div className="section-divider" />
       <SideProductsSection />
+      <div className="section-divider" />
       <BundleSection />
+      <div className="section-divider" />
       <CommentsSection />
       <Footer />
     </main>

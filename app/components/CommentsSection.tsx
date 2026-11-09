@@ -210,7 +210,8 @@ export default function CommentsSection() {
               padding: "28px",
               boxShadow: "0 1px 8px rgba(28,25,23,0.06)",
               position: "sticky",
-              top: "88px", // accounts for sticky navbar height
+              top: "88px",
+              alignSelf: "flex-start", // ensures sticky works correctly in flex
             }}
           >
             <h3
