@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate --config prisma7.config.ts && next build",
+    "build": "npx prisma generate --config prisma7.config.ts && next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
     "dotenv": "^18.0.10",
