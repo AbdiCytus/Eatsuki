@@ -4,6 +4,7 @@ import AboutSection from "./components/AboutSection";
 import MainProductsSection from "./components/MainProductsSection";
 import SideProductsSection from "./components/SideProductsSection";
 import BundleSection from "./components/BundleSection";
+import CommentsSection from "./components/CommentsSection";
 import Footer from "./components/Footer";
 
 /**
@@ -20,7 +21,7 @@ export default function Home() {
       <MainProductsSection />
       <SideProductsSection />
       <BundleSection />
-      {/* Comments section — coming in Milestone 5 */}
+      <CommentsSection />
       <Footer />
     </main>
   );
