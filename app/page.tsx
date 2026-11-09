@@ -3,6 +3,8 @@ import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import MainProductsSection from "./components/MainProductsSection";
 import SideProductsSection from "./components/SideProductsSection";
+import BundleSection from "./components/BundleSection";
+import Footer from "./components/Footer";
 
 /**
  * Root landing page for Eatsuki.
@@ -17,7 +19,9 @@ export default function Home() {
       <AboutSection />
       <MainProductsSection />
       <SideProductsSection />
-      {/* Bundle, Comments, Footer — coming in next milestones */}
+      <BundleSection />
+      {/* Comments section — coming in Milestone 5 */}
+      <Footer />
     </main>
   );
 }
