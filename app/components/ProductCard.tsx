@@ -2,7 +2,8 @@
  * ProductCard — Server Component
  *
  * Reusable card component for displaying a single product item.
- * Used by both MainProductsSection and SideProductsSection.
+ * Styled with claymorphism: bold border-radius, solid fills, multi-layer
+ * box-shadow. No gradients used anywhere.
  *
  * Props:
  *   - emoji       : Visual icon representing the product
@@ -10,7 +11,7 @@
  *   - description : Short description
  *   - price       : Price string (e.g. "Rp 25.000")
  *   - badge       : Optional badge text (e.g. "Best Seller", "New")
- *   - badgeColor  : "orange" | "red" (default: "orange")
+ *   - badgeColor  : "orange" | "red" (default: "red")
  */
 
 interface ProductCardProps {
@@ -28,37 +29,36 @@ export default function ProductCard({
   description,
   price,
   badge,
-  badgeColor = "orange",
+  badgeColor = "red",
 }: ProductCardProps) {
   const badgeStyles =
-    badgeColor === "red"
-      ? { backgroundColor: "#FEF2F2", color: "#DC2626", border: "1px solid #FECACA" }
-      : { backgroundColor: "#FFF7ED", color: "#EA580C", border: "1px solid #FED7AA" };
+    badgeColor === "orange"
+      ? { backgroundColor: "#FFF7ED", color: "#EA580C", border: "1.5px solid #FED7AA" }
+      : { backgroundColor: "#FEF2F2", color: "#DC2626", border: "1.5px solid #FECACA" };
 
   return (
     <article
-      className="hover-card relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group"
+      className="hover-card relative flex flex-col rounded-3xl overflow-hidden transition-all duration-300 group"
       style={{
         backgroundColor: "#FFFFFF",
-        border: "1px solid #E7E5E4",
-        boxShadow: "0 1px 4px rgba(28,25,23,0.06)",
+        border: "2px solid #E7E5E4",
       }}
     >
       {/* Optional badge */}
       {badge && (
         <span
-          className="absolute top-3 right-3 font-body font-semibold text-xs rounded-full z-10"
-          style={{ ...badgeStyles, padding: "3px 10px" }}
+          className="absolute top-3 right-3 font-body font-bold text-xs rounded-full z-10"
+          style={{ ...badgeStyles, padding: "4px 12px" }}
         >
           {badge}
         </span>
       )}
 
-      {/* Emoji illustration area */}
+      {/* Emoji illustration area — solid bg, no gradient */}
       <div
-        className="flex items-center justify-center transition-colors duration-300"
+        className="flex items-center justify-center"
         style={{
-          backgroundColor: "#FFF7ED",
+          backgroundColor: "#FFF1F2",
           height: "140px",
           fontSize: "72px",
         }}
@@ -85,16 +85,17 @@ export default function ProductCard({
         <div className="flex items-center justify-between mt-auto">
           <span
             className="font-heading font-bold text-lg"
-            style={{ color: "#F97316" }}
+            style={{ color: "#DC2626" }}
           >
             {price}
           </span>
           <span
-            className="font-body font-semibold text-xs rounded-full transition-colors duration-200"
+            className="font-body font-bold text-xs rounded-full"
             style={{
-              backgroundColor: "#F97316",
+              backgroundColor: "#DC2626",
               color: "#FFFFFF",
-              padding: "6px 14px",
+              padding: "7px 16px",
+              boxShadow: "0 3px 0px #B91C1C",
             }}
           >
             Pesan

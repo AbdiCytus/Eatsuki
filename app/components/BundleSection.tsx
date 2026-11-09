@@ -1,13 +1,14 @@
 /**
  * BundleSection — Server Component
  *
- * Showcases Eatsuki's one special bundle deal with premium visual treatment.
+ * Showcases Eatsuki's one special bundle deal.
+ * Background: solid Crimson Red (#DC2626) — no gradients.
+ * Claymorphism card: solid white fill, puffy multi-layer shadow.
  * Features:
- *   - "Paket Hemat" badge + "HEMAT X%" label
+ *   - "HEMAT 35%" label badge (solid)
  *   - Original price (strikethrough) vs discounted price
  *   - Bundle item list with emoji
  *   - Mascot image (itsuki_chibi.png) as companion visual
- *   - Decorative gradient background to make the section pop
  */
 
 import Image from "next/image";
@@ -26,44 +27,36 @@ export default function BundleSection() {
     <section
       id="bundle"
       className="relative overflow-hidden"
-      style={{ padding: "96px 0" }}
+      style={{ backgroundColor: "#DC2626", padding: "96px 0" }}
     >
-      {/* ── Warm gradient background ── */}
+      {/* Subtle dot-pattern overlay for texture (no gradient) */}
       <div
         aria-hidden
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "linear-gradient(135deg, #FFF7ED 0%, #FAFAF9 50%, #FEF2F2 100%)",
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+          pointerEvents: "none",
           zIndex: 0,
-        }}
-      />
-
-      {/* ── Decorative top border ── */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "4px",
-          background: "linear-gradient(90deg, #DC2626, #F97316)",
-          zIndex: 1,
         }}
       />
 
       <div
         className="max-w-6xl mx-auto px-6 relative"
-        style={{ zIndex: 2 }}
+        style={{ zIndex: 1 }}
       >
         {/* ── Section header ── */}
         <div className="text-center mb-14">
           <ScrollAnimationWrapper delay={0}>
             <span
-              className="inline-block font-body font-semibold text-sm uppercase tracking-widest mb-4"
-              style={{ color: "#DC2626" }}
+              className="inline-block font-body font-bold text-sm uppercase tracking-widest mb-4 rounded-full"
+              style={{
+                color: "#DC2626",
+                backgroundColor: "#FFFFFF",
+                padding: "6px 18px",
+              }}
             >
               Penawaran Spesial
             </span>
@@ -74,19 +67,19 @@ export default function BundleSection() {
               className="font-heading font-extrabold leading-tight"
               style={{
                 fontSize: "clamp(1.875rem, 4vw, 2.75rem)",
-                color: "#1C1917",
+                color: "#FFFFFF",
                 letterSpacing: "-0.02em",
               }}
             >
               Paket Bundle{" "}
-              <span style={{ color: "#DC2626" }}>Hemat</span> Spesial
+              <span style={{ color: "#FEF2F2" }}>Hemat</span> Spesial
             </h2>
           </ScrollAnimationWrapper>
 
           <ScrollAnimationWrapper delay={160}>
             <p
               className="font-body text-lg leading-relaxed mt-4 mx-auto"
-              style={{ color: "#78716C", maxWidth: "500px" }}
+              style={{ color: "#FECACA", maxWidth: "500px" }}
             >
               Dapatkan lebih banyak dengan harga yang lebih hemat.
               Paket komplit untuk kamu dan keluarga!
@@ -94,7 +87,7 @@ export default function BundleSection() {
           </ScrollAnimationWrapper>
         </div>
 
-        {/* ── Bundle card ── */}
+        {/* ── Bundle card — claymorphism ── */}
         <div className="flex justify-center">
           <ScrollAnimationWrapper delay={200}>
             <div
@@ -102,20 +95,21 @@ export default function BundleSection() {
               style={{
                 maxWidth: "900px",
                 backgroundColor: "#FFFFFF",
-                border: "2px solid #FED7AA",
+                border: "3px solid #FECACA",
                 boxShadow:
-                  "0 20px 60px rgba(249,115,22,0.12), 0 4px 16px rgba(28,25,23,0.06)",
+                  "0 8px 0px #B91C1C, 0 16px 48px rgba(28,25,23,0.20)",
                 padding: "clamp(28px, 5vw, 48px)",
               }}
             >
-              {/* HEMAT badge — absolute top-right */}
+              {/* HEMAT badge — solid, no gradient */}
               <div
                 className="absolute top-0 right-0 font-heading font-extrabold text-white text-sm"
                 style={{
-                  background: "linear-gradient(135deg, #DC2626, #F97316)",
+                  backgroundColor: "#DC2626",
                   padding: "10px 24px",
                   borderBottomLeftRadius: "16px",
                   letterSpacing: "0.05em",
+                  boxShadow: "0 3px 0px #B91C1C",
                 }}
               >
                 HEMAT 35%
@@ -128,8 +122,9 @@ export default function BundleSection() {
                   style={{
                     width: "200px",
                     height: "200px",
-                    backgroundColor: "#FFF7ED",
-                    border: "3px solid #FED7AA",
+                    backgroundColor: "#FFF1F2",
+                    border: "3px solid #FECACA",
+                    boxShadow: "0 4px 0px #FECACA",
                   }}
                 >
                   <Image
@@ -141,8 +136,8 @@ export default function BundleSection() {
                   />
                 </div>
                 <p
-                  className="font-body font-semibold text-sm text-center"
-                  style={{ color: "#F97316" }}
+                  className="font-body font-bold text-sm text-center"
+                  style={{ color: "#DC2626" }}
                 >
                   ✨ Rekomendasi Itsuki!
                 </p>
@@ -229,7 +224,7 @@ export default function BundleSection() {
                       className="font-heading font-extrabold"
                       style={{
                         fontSize: "2rem",
-                        color: "#F97316",
+                        color: "#DC2626",
                         lineHeight: 1,
                       }}
                     >
@@ -260,4 +255,3 @@ export default function BundleSection() {
     </section>
   );
 }
-

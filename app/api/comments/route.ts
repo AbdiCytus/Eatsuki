@@ -2,7 +2,9 @@
  * API Route: /api/comments
  *
  * GET  — Fetch all comments, ordered newest first.
- * POST — Create a new comment with { name, message }.
+ *        Returns sessionId per comment so the client can identify ownership.
+ * POST — Create a new comment with { name, message, sessionId }.
+ *        sessionId is generated client-side (UUID v4) and stored here.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -28,12 +30,19 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, message } = body;
+    const { name, message, sessionId } = body;
 
     // Basic validation
     if (!name?.trim() || !message?.trim()) {
       return NextResponse.json(
         { error: "Name and message are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!sessionId?.trim()) {
+      return NextResponse.json(
+        { error: "Session ID is required." },
         { status: 400 }
       );
     }
@@ -56,6 +65,7 @@ export async function POST(request: NextRequest) {
       data: {
         name: name.trim(),
         message: message.trim(),
+        sessionId: sessionId.trim(),
       },
     });
 
@@ -67,4 +77,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

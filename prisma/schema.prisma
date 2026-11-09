@@ -12,10 +12,12 @@ datasource db {
 
 // Comment model — stores user comments from the landing page.
 // Supports full CRUD operations via the /api/comments route.
+// sessionId is used for client-side ownership verification.
 model Comment {
   id        String   @id @default(cuid())
   name      String   // Name of the commenter
   message   String   // Comment body / review text
+  sessionId String   // Browser session identifier (UUID v4) for ownership check
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -101,7 +101,7 @@ export default function CommentForm({
             color: "#1C1917",
             padding: "12px 16px",
           }}
-          onFocus={(e) => (e.target.style.borderColor = "#F97316")}
+          onFocus={(e) => (e.target.style.borderColor = "#DC2626")}
           onBlur={(e) => (e.target.style.borderColor = "#E7E5E4")}
         />
       </div>
@@ -137,7 +137,7 @@ export default function CommentForm({
             color: "#1C1917",
             padding: "12px 16px",
           }}
-          onFocus={(e) => (e.target.style.borderColor = "#F97316")}
+          onFocus={(e) => (e.target.style.borderColor = "#DC2626")}
           onBlur={(e) => (e.target.style.borderColor = "#E7E5E4")}
         />
       </div>

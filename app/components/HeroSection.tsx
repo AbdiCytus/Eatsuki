@@ -2,16 +2,19 @@
  * HeroSection — Server Component
  *
  * The main landing hero for Eatsuki.
- * Layout (desktop): two-column — text on the left, mascot image on the right.
- * Layout (mobile): stacked, mascot above the text.
+ * Background: itsuki_banner.webp image (via next/image fill + absolute position).
+ * Semi-transparent overlay ensures all existing text remains readable.
+ * No decorative blobs, no gradients — claymorphism badge & stat chips.
  *
- * Content:
+ * Layout (desktop): two-column — text on the left.
+ * Layout (mobile): stacked, full banner background.
+ *
+ * Content (preserved exactly):
  *   - Badge label
- *   - Headline (from brief)
+ *   - Headline
  *   - Tagline / subheadline
- *   - Two CTA buttons (hover effects via CSS — no event handlers needed)
- *   - Mascot image (Itsuki Nakano from /public)
- *   - Decorative stat badges
+ *   - Two CTA buttons
+ *   - Stats row
  */
 
 import Image from "next/image";
@@ -21,177 +24,142 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-bg"
+      className="relative overflow-hidden"
+      style={{ minHeight: "clamp(540px, 80vh, 760px)" }}
     >
-      {/* ── Decorative background blobs (CSS blur, no interactivity) ── */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "-10%",
-          right: "-5%",
-          width: "480px",
-          height: "480px",
-          borderRadius: "50%",
-          backgroundColor: "#F97316",
-          opacity: 0.08,
-          filter: "blur(80px)",
-          pointerEvents: "none",
-        }}
+      {/* ── Background banner image ── */}
+      <Image
+        src="/itsuki_banner.webp"
+        alt="Eatsuki banner"
+        fill
+        priority
+        style={{ objectFit: "cover", objectPosition: "center" }}
       />
+
+      {/* ── Dark overlay for text readability (no gradient — solid) ── */}
       <div
         aria-hidden
         style={{
           position: "absolute",
-          bottom: "10%",
-          left: "-8%",
-          width: "360px",
-          height: "360px",
-          borderRadius: "50%",
-          backgroundColor: "#DC2626",
-          opacity: 0.06,
-          filter: "blur(80px)",
-          pointerEvents: "none",
+          inset: 0,
+          backgroundColor: "rgba(28, 25, 23, 0.58)",
+          zIndex: 1,
         }}
       />
 
       {/* ── Main content ── */}
-      <div className="max-w-6xl mx-auto px-6 py-16 md:py-24 lg:py-28">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-8 lg:gap-16">
+      <div
+        className="relative max-w-6xl mx-auto px-6 py-20 md:py-28 lg:py-32 flex flex-col justify-center"
+        style={{ zIndex: 2, minHeight: "inherit" }}
+      >
+        <div className="max-w-2xl">
 
-          {/* ── Left: Text content ── */}
-          <div className="flex-1 text-center md:text-left">
+          {/* Badge */}
+          <ScrollAnimationWrapper delay={0}>
+            <span
+              className="inline-flex items-center gap-2 font-body font-bold text-sm rounded-full mb-6"
+              style={{
+                backgroundColor: "#DC2626",
+                color: "#FFFFFF",
+                padding: "7px 18px",
+                boxShadow: "0 3px 0px #B91C1C",
+              }}
+            >
+              🍔 Makanan Favoritmu Ada di Sini
+            </span>
+          </ScrollAnimationWrapper>
 
-            {/* Badge */}
-            <ScrollAnimationWrapper delay={0}>
-              <span
-                className="inline-flex items-center gap-2 font-body font-semibold text-sm rounded-full mb-6"
+          {/* Headline */}
+          <ScrollAnimationWrapper delay={80}>
+            <h1
+              className="font-heading font-extrabold leading-tight mb-4"
+              style={{
+                fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+                letterSpacing: "-0.02em",
+                color: "#FFFFFF",
+                textShadow: "0 2px 8px rgba(0,0,0,0.40)",
+              }}
+            >
+              Eatsuki —{" "}
+              <span style={{ color: "#FCA5A5" }}>Solusi Cepat</span>
+              <br />
+              dan Tepat di Waktu Lapar.
+            </h1>
+          </ScrollAnimationWrapper>
+
+          {/* Tagline */}
+          <ScrollAnimationWrapper delay={160}>
+            <p
+              className="font-body text-lg leading-relaxed mb-8 max-w-lg"
+              style={{ color: "#E7E5E4" }}
+            >
+              Makan Enak Nggak Perlu Tunggu Nanti. Temukan Menu Favoritmu
+              dan Nikmati Tiap Gigitannya Bersama Eatsuki!
+            </p>
+          </ScrollAnimationWrapper>
+
+          {/* CTA Buttons */}
+          <ScrollAnimationWrapper delay={240}>
+            <div className="flex flex-col sm:flex-row gap-4">
+
+              {/* Primary CTA */}
+              <a
+                href="#menu"
+                className="btn-cta-primary inline-flex items-center justify-center font-body font-bold text-base text-white bg-primary hover:bg-primary-dark rounded-full"
+                style={{ padding: "14px 32px" }}
+              >
+                🍽️ Lihat Menu
+              </a>
+
+              {/* Secondary CTA — solid border, no gradient */}
+              <a
+                href="#bundle"
+                className="inline-flex items-center justify-center font-body font-semibold text-base rounded-full transition-colors duration-200"
                 style={{
-                  backgroundColor: "#FFF7ED",
-                  color: "#EA580C",
-                  padding: "6px 16px",
-                  border: "1px solid #FED7AA",
+                  padding: "14px 32px",
+                  border: "2px solid rgba(255,255,255,0.60)",
+                  color: "#FFFFFF",
+                  backgroundColor: "rgba(255,255,255,0.10)",
                 }}
               >
-                🍔 Makanan Favoritmu Ada di Sini
-              </span>
-            </ScrollAnimationWrapper>
+                🎁 Paket Hemat
+              </a>
+            </div>
+          </ScrollAnimationWrapper>
 
-            {/* Headline */}
-            <ScrollAnimationWrapper delay={80}>
-              <h1
-                className="font-heading font-extrabold leading-tight mb-4 text-text"
-                style={{
-                  fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Eatsuki —{" "}
-                <span className="text-primary">Solusi Cepat</span>
-                <br />
-                dan Tepat di Waktu Lapar.
-              </h1>
-            </ScrollAnimationWrapper>
-
-            {/* Tagline */}
-            <ScrollAnimationWrapper delay={160}>
-              <p
-                className="font-body text-lg leading-relaxed mb-8 max-w-lg mx-auto md:mx-0 text-text-muted"
-              >
-                Makan Enak Nggak Perlu Tunggu Nanti. Temukan Menu Favoritmu
-                dan Nikmati Tiap Gigitannya Bersama Eatsuki!
-              </p>
-            </ScrollAnimationWrapper>
-
-            {/* CTA Buttons */}
-            <ScrollAnimationWrapper delay={240}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-
-                {/* Primary CTA — hover via CSS class .btn-cta-primary */}
-                <a
-                  href="#menu"
-                  className="btn-cta-primary inline-flex items-center justify-center font-body font-semibold text-base text-white bg-primary hover:bg-primary-dark rounded-full"
-                  style={{ padding: "14px 32px" }}
-                >
-                  🍽️ Lihat Menu
-                </a>
-
-                {/* Secondary CTA — hover via Tailwind classes */}
-                <a
-                  href="#bundle"
-                  className="inline-flex items-center justify-center font-body font-semibold text-base text-text hover:text-primary rounded-full transition-colors duration-200"
+          {/* Stats row */}
+          <ScrollAnimationWrapper delay={320}>
+            <div className="flex items-center gap-4 mt-10 flex-wrap">
+              {[
+                { value: "50+", label: "Menu Pilihan" },
+                { value: "1000+", label: "Pelanggan Puas" },
+                { value: "⭐ 4.9", label: "Rating" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="text-center rounded-2xl"
                   style={{
-                    padding: "14px 32px",
-                    border: "2px solid #E7E5E4",
+                    minWidth: "86px",
+                    backgroundColor: "rgba(255,255,255,0.15)",
+                    border: "1.5px solid rgba(255,255,255,0.30)",
+                    padding: "10px 16px",
+                    backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)",
                   }}
                 >
-                  🎁 Paket Hemat
-                </a>
-              </div>
-            </ScrollAnimationWrapper>
-
-            {/* Stats row */}
-            <ScrollAnimationWrapper delay={320}>
-              <div className="flex items-center gap-6 mt-10 justify-center md:justify-start flex-wrap">
-                {[
-                  { value: "50+", label: "Menu Pilihan" },
-                  { value: "1000+", label: "Pelanggan Puas" },
-                  { value: "⭐ 4.9", label: "Rating" },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="text-center"
-                    style={{ minWidth: "72px" }}
-                  >
-                    <p className="font-heading font-bold text-xl text-text">
-                      {stat.value}
-                    </p>
-                    <p className="font-body text-xs text-text-muted">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ScrollAnimationWrapper>
-          </div>
-
-          {/* ── Right: Mascot image ── */}
-          <div className="flex-shrink-0 relative w-full md:w-auto flex justify-center">
-            <ScrollAnimationWrapper direction="right" delay={100}>
-              {/* Decorative circle behind mascot */}
-              <div
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "50%",
-                  backgroundColor: "#FFF7ED",
-                  transform: "scale(0.9)",
-                  zIndex: 0,
-                }}
-              />
-
-              <div style={{ position: "relative", zIndex: 1 }}>
-                <Image
-                  src="/itsuki.png"
-                  alt="Itsuki — Maskot Eatsuki"
-                  width={420}
-                  height={420}
-                  priority
-                  className="drop-shadow-2xl"
-                  style={{
-                    objectFit: "contain",
-                    width: "clamp(260px, 40vw, 420px)",
-                    height: "auto",
-                  }}
-                />
-              </div>
-            </ScrollAnimationWrapper>
-          </div>
+                  <p className="font-heading font-bold text-xl" style={{ color: "#FFFFFF" }}>
+                    {stat.value}
+                  </p>
+                  <p className="font-body text-xs" style={{ color: "#E7E5E4" }}>
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </ScrollAnimationWrapper>
 
         </div>
       </div>
     </section>
   );
 }
-

@@ -11,8 +11,7 @@
 
 const FOOTER_LINKS = [
   { label: "Tentang", href: "#tentang" },
-  { label: "Menu Utama", href: "#menu" },
-  { label: "Side Dish", href: "#side-dish" },
+  { label: "Menu", href: "#menu" },
   { label: "Paket Hemat", href: "#bundle" },
   { label: "Komentar", href: "#komentar" },
 ];
@@ -27,12 +26,12 @@ export default function Footer() {
         color: "#E7E5E4",
       }}
     >
-      {/* ── Decorative top gradient bar ── */}
+      {/* ── Solid top accent bar — no gradient ── */}
       <div
         aria-hidden
         style={{
-          height: "4px",
-          background: "linear-gradient(90deg, #F97316, #DC2626)",
+          height: "5px",
+          backgroundColor: "#DC2626",
         }}
       />
 
@@ -51,7 +50,7 @@ export default function Footer() {
               className="font-heading font-extrabold text-3xl tracking-tight"
               aria-label="Eatsuki — Beranda"
             >
-              <span style={{ color: "#F97316" }}>Eat</span>
+              <span style={{ color: "#DC2626" }}>Eat</span>
               <span style={{ color: "#FFFFFF" }}>suki</span>
             </a>
 
@@ -87,7 +86,7 @@ export default function Footer() {
           <div>
             <h4
               className="font-heading font-bold text-sm uppercase tracking-widest mb-5"
-              style={{ color: "#F97316" }}
+              style={{ color: "#DC2626" }}
             >
               Navigasi
             </h4>
@@ -110,7 +109,7 @@ export default function Footer() {
           <div>
             <h4
               className="font-heading font-bold text-sm uppercase tracking-widest mb-5"
-              style={{ color: "#F97316" }}
+              style={{ color: "#DC2626" }}
             >
               Info
             </h4>

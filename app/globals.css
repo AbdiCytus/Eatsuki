@@ -6,10 +6,12 @@
 
 @theme {
   /* --- Color Palette --- */
-  --color-primary:        #F97316; /* Warm Amber / Sunset Orange */
-  --color-primary-dark:   #EA580C; /* Deeper Orange for hover states */
-  --color-secondary:      #DC2626; /* Crimson Red / Maple */
-  --color-secondary-dark: #B91C1C; /* Deeper Red for hover states */
+  /* Primary: Crimson Red / Maple (swapped from orange) */
+  --color-primary:        #DC2626;
+  --color-primary-dark:   #B91C1C;
+  /* Secondary: Warm Amber / Orange */
+  --color-secondary:      #F97316;
+  --color-secondary-dark: #EA580C;
   --color-bg:             #FAFAF9; /* Off-White / Soft Cream */
   --color-text:           #1C1917; /* Charcoal Dark */
   --color-text-muted:     #78716C; /* Stone-500 — subtitles, captions */
@@ -36,37 +38,50 @@ html {
 }
 
 /* ── CTA Button Helpers ── */
-/* Primary orange button: drop shadow + lift on hover, no JS event handlers needed */
+/* Primary red button: claymorphism shadow + lift on hover */
 .btn-cta-primary {
-  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35);
+  box-shadow:
+    0 4px 0px #B91C1C,
+    0 6px 20px rgba(220, 38, 38, 0.30);
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .btn-cta-primary:hover {
-  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.45);
-  transform: translateY(-2px);
+  box-shadow:
+    0 2px 0px #B91C1C,
+    0 4px 14px rgba(220, 38, 38, 0.35);
+  transform: translateY(2px);
+}
+.btn-cta-primary:active {
+  box-shadow: 0 0px 0px #B91C1C;
+  transform: translateY(4px);
 }
 
-/* ── Product card hover shadow ── */
-/* Layered shadow appears on hover without JS */
+/* ── Product card claymorphism hover ── */
+/* Puffy lift shadow on hover — no JS needed */
 article.hover-card {
+  box-shadow:
+    0 4px 0px #D1D0CF,
+    0 6px 16px rgba(28, 25, 23, 0.08);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 article.hover-card:hover {
-  box-shadow: 0 8px 28px rgba(28, 25, 23, 0.1);
+  box-shadow:
+    0 8px 0px #C2BFBe,
+    0 12px 28px rgba(28, 25, 23, 0.14);
+  transform: translateY(-4px);
 }
 
-/* ── Section wave divider ── */
-/* Thin gradient separator between alternating sections */
+/* ── Section solid divider (no gradient) ── */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #E7E5E4 20%, #E7E5E4 80%, transparent);
+  background-color: #E7E5E4;
   margin: 0;
 }
 
 /* ── Focus ring for accessibility ── */
 /* Consistent focus ring using brand primary color */
 :focus-visible {
-  outline: 2px solid #F97316;
+  outline: 2px solid #DC2626;
   outline-offset: 3px;
   border-radius: 4px;
 }

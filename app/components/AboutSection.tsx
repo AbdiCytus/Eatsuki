@@ -2,10 +2,11 @@
  * AboutSection — Server Component
  *
  * Presents the Eatsuki brand story and three key selling points.
- * Layout: heading + description on the left, feature cards on the right.
- * AOS: each element fades in with a staggered delay.
+ * Layout: heading + itsuki_1.jpg photo on the left, feature cards on the right.
+ * Claymorphism cards: solid fill, puffy box-shadow, no gradient.
  */
 
+import Image from "next/image";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
 const FEATURES = [
@@ -36,7 +37,7 @@ export default function AboutSection() {
       className="relative overflow-hidden"
       style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}
     >
-      {/* Subtle decorative accent */}
+      {/* Solid accent bar — no gradient */}
       <div
         aria-hidden
         style={{
@@ -44,20 +45,20 @@ export default function AboutSection() {
           top: 0,
           left: 0,
           right: 0,
-          height: "4px",
-          background: "linear-gradient(90deg, #F97316, #DC2626)",
+          height: "5px",
+          backgroundColor: "#DC2626",
         }}
       />
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
 
-          {/* ── Left: Brand story ── */}
+          {/* ── Left: Brand story + photo ── */}
           <div className="flex-1">
             <ScrollAnimationWrapper delay={0}>
               <span
                 className="inline-block font-body font-semibold text-sm uppercase tracking-widest mb-4"
-                style={{ color: "#F97316" }}
+                style={{ color: "#DC2626" }}
               >
                 Tentang Kami
               </span>
@@ -73,7 +74,7 @@ export default function AboutSection() {
                 }}
               >
                 Kenapa Harus{" "}
-                <span style={{ color: "#F97316" }}>Eatsuki?</span>
+                <span style={{ color: "#DC2626" }}>Eatsuki?</span>
               </h2>
             </ScrollAnimationWrapper>
 
@@ -91,7 +92,7 @@ export default function AboutSection() {
 
             <ScrollAnimationWrapper delay={240}>
               <p
-                className="font-body text-lg leading-relaxed"
+                className="font-body text-lg leading-relaxed mb-8"
                 style={{ color: "#78716C", maxWidth: "480px" }}
               >
                 Dari burger juicy, kebab gurih, hingga side dish yang
@@ -100,6 +101,26 @@ export default function AboutSection() {
                   makan enak adalah hak semua orang.
                 </strong>
               </p>
+            </ScrollAnimationWrapper>
+
+            {/* itsuki_1.jpg — decorative photo */}
+            <ScrollAnimationWrapper delay={300}>
+              <div
+                className="rounded-3xl overflow-hidden"
+                style={{
+                  maxWidth: "420px",
+                  border: "3px solid #E7E5E4",
+                  boxShadow: "0 6px 0px #D1D0CF, 0 10px 24px rgba(28,25,23,0.10)",
+                }}
+              >
+                <Image
+                  src="/itsuki_1.jpg"
+                  alt="Suasana seru bersama Eatsuki"
+                  width={420}
+                  height={260}
+                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                />
+              </div>
             </ScrollAnimationWrapper>
           </div>
 
@@ -112,21 +133,22 @@ export default function AboutSection() {
                 delay={index * 120}
               >
                 <div
-                  className="flex items-start gap-5 rounded-2xl transition-shadow duration-200"
+                  className="flex items-start gap-5 rounded-3xl"
                   style={{
-                    backgroundColor: "#FAFAF9",
-                    border: "1px solid #E7E5E4",
+                    backgroundColor: "#FFFFFF",
+                    border: "2px solid #E7E5E4",
                     padding: "24px",
+                    boxShadow: "0 4px 0px #D1D0CF, 0 6px 16px rgba(28,25,23,0.07)",
                   }}
                 >
-                  {/* Icon badge */}
                   <div
-                    className="flex-shrink-0 flex items-center justify-center rounded-xl text-2xl"
+                    className="flex-shrink-0 flex items-center justify-center rounded-2xl text-2xl"
                     style={{
                       width: "52px",
                       height: "52px",
-                      backgroundColor: "#FFF7ED",
-                      border: "1px solid #FED7AA",
+                      backgroundColor: "#FFF1F2",
+                      border: "2px solid #FECACA",
+                      boxShadow: "0 3px 0px #FECACA",
                     }}
                   >
                     {feature.icon}

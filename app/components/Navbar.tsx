@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 const NAV_LINKS = [
   { label: "Tentang", href: "#tentang" },
   { label: "Menu", href: "#menu" },
-  { label: "Paket Hemat", href: "#bundle" },
   { label: "Komentar", href: "#komentar" },
 ];
 
@@ -52,7 +51,7 @@ export default function Navbar() {
         <a
           href="#"
           className="font-heading font-extrabold text-2xl tracking-tight"
-          style={{ color: "#F97316" }}
+          style={{ color: "#DC2626" }}
           aria-label="Eatsuki — Beranda"
         >
           Eat<span style={{ color: "#1C1917" }}>suki</span>
@@ -67,7 +66,7 @@ export default function Navbar() {
                 className="font-body font-medium text-sm transition-colors duration-200"
                 style={{ color: "#78716C" }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#F97316")
+                  (e.currentTarget.style.color = "#DC2626")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.color = "#78716C")
@@ -84,14 +83,14 @@ export default function Navbar() {
           href="#menu"
           className="hidden md:inline-flex items-center justify-center font-body font-semibold text-sm text-white rounded-full transition-colors duration-200"
           style={{
-            backgroundColor: "#F97316",
+            backgroundColor: "#DC2626",
             padding: "10px 24px",
           }}
           onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor = "#EA580C")
+            (e.currentTarget.style.backgroundColor = "#B91C1C")
           }
           onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = "#F97316")
+            (e.currentTarget.style.backgroundColor = "#DC2626")
           }
         >
           Lihat Menu
@@ -165,7 +164,7 @@ export default function Navbar() {
               onClick={handleLinkClick}
               className="block text-center font-body font-semibold text-sm text-white rounded-full"
               style={{
-                backgroundColor: "#F97316",
+                backgroundColor: "#DC2626",
                 padding: "12px 0",
               }}
             >
