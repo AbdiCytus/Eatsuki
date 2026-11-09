@@ -34,3 +34,14 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ── CTA Button Helpers ── */
+/* Primary orange button: drop shadow + lift on hover, no JS event handlers needed */
+.btn-cta-primary {
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.btn-cta-primary:hover {
+  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.45);
+  transform: translateY(-2px);
+}
