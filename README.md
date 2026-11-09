@@ -95,4 +95,4 @@ eatsuki/
 
 ## 👤 Author
 
-Dibuat dengan ❤️ dan 🍔 oleh **Abdi Prayuda (AbdiCytus)**.
+Dibuat oleh **Abdi Prayuda (AbdiCytus)**.
