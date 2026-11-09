@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -29,12 +29,22 @@ export const metadata: Metadata = {
   description:
     "Makan Enak Nggak Perlu Tunggu Nanti. Temukan Menu Favoritmu dan Nikmati Tiap Gigitannya Bersama Eatsuki! Makanan cepat saji dan aneka side dish terlezat.",
   keywords: ["eatsuki", "makanan cepat saji", "fast food", "side dish", "burger", "kebab", "rice bowl"],
+  robots: { index: true, follow: true },
   openGraph: {
     title: "Eatsuki — Solusi Cepat dan Tepat di Waktu Lapar",
     description:
       "Makan Enak Nggak Perlu Tunggu Nanti. Temukan Menu Favoritmu dan Nikmati Tiap Gigitannya Bersama Eatsuki!",
     type: "website",
+    locale: "id_ID",
+    siteName: "Eatsuki",
   },
+};
+
+/** Responsive viewport — prevents mobile zoom on input focus */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#F97316",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
