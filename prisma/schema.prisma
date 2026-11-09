@@ -1,7 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// This is your Prisma schema file.
+// Learn more: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client"
@@ -10,4 +8,14 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// Comment model — stores user comments from the landing page.
+// Supports full CRUD operations via the /api/comments route.
+model Comment {
+  id        String   @id @default(cuid())
+  name      String   // Name of the commenter
+  message   String   // Comment body / review text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
