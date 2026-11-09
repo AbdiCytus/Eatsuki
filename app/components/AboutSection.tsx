@@ -66,19 +66,6 @@ export default function AboutSection() {
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
         />
-        {/* White shadow layer on the LEFT side of the image */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: "60%",
-            background: "linear-gradient(to right, #FFFFFF, transparent)",
-            zIndex: 1,
-          }}
-        />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative" style={{ zIndex: 2 }}>
