@@ -89,17 +89,15 @@ export default function ProductCard({
           >
             {price}
           </span>
-          <span
-            className="font-body font-bold text-xs rounded-full"
+          <a
+            href="#komentar"
+            className="btn-cta-primary inline-flex items-center justify-center font-body font-bold text-xs text-white bg-primary hover:bg-primary-dark rounded-full cursor-pointer"
             style={{
-              backgroundColor: "#DC2626",
-              color: "#FFFFFF",
               padding: "7px 16px",
-              boxShadow: "0 3px 0px #B91C1C",
             }}
           >
             Pesan
-          </span>
+          </a>
         </div>
       </div>
     </article>
