@@ -193,15 +193,16 @@ export default function CommentsSection() {
   return (
     <section
       id="komentar"
-      style={{ backgroundColor: "#FAFAF9", padding: "96px 0" }}
+      className="py-14 lg:py-24"
+      style={{ backgroundColor: "#FAFAF9" }}
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* ── Section header ── */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-14">
           <ScrollAnimationWrapper delay={0}>
             <span
-              className="inline-flex items-center gap-2 font-body font-bold text-sm uppercase tracking-widest mb-4"
+              className="inline-flex items-center gap-2 font-body font-bold text-xs sm:text-sm uppercase tracking-widest mb-3 sm:mb-4"
               style={{ color: "#DC2626" }}
             >
               <ChatBubbleLeftEllipsisIcon style={{ width: "16px", height: "16px" }} />
@@ -213,7 +214,7 @@ export default function CommentsSection() {
             <h2
               className="font-heading font-extrabold leading-tight"
               style={{
-                fontSize: "clamp(1.875rem, 4vw, 2.75rem)",
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
                 color: "#1C1917",
                 letterSpacing: "-0.02em",
               }}
@@ -225,7 +226,7 @@ export default function CommentsSection() {
 
           <ScrollAnimationWrapper delay={160}>
             <p
-              className="font-body text-lg leading-relaxed mt-4 mx-auto"
+              className="font-body text-base sm:text-lg leading-relaxed mt-3 sm:mt-4 mx-auto"
               style={{ color: "#78716C", maxWidth: "500px" }}
             >
               Bagikan pengalamanmu atau baca cerita dari pelanggan Eatsuki
@@ -235,23 +236,20 @@ export default function CommentsSection() {
         </div>
 
         {/* ── Two-column layout: form (left) | comments list (right) ── */}
-        <div className="flex flex-col lg:flex-row gap-10 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
 
-          {/* ── Add comment form — claymorphism card ── */}
+          {/* ── Add comment form — claymorphism card (sticky on desktop only) ── */}
           <div
-            className="w-full lg:w-96 flex-shrink-0 rounded-3xl"
+            className="w-full lg:w-96 flex-shrink-0 rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:sticky lg:top-[88px]"
             style={{
               backgroundColor: "#FFFFFF",
               border: "2px solid #E7E5E4",
-              padding: "28px",
-              boxShadow: "0 6px 0px #D1D0CF, 0 10px 24px rgba(28,25,23,0.08)",
-              position: "sticky",
-              top: "88px",
+              boxShadow: "0 4px 0px #D1D0CF, 0 8px 20px rgba(28,25,23,0.06)",
               alignSelf: "flex-start",
             }}
           >
             <h3
-              className="font-heading font-bold text-lg mb-6 inline-flex items-center gap-2"
+              className="font-heading font-bold text-base sm:text-lg mb-4 sm:mb-6 inline-flex items-center gap-2"
               style={{ color: "#1C1917" }}
             >
               <ChatBubbleLeftIcon style={{ width: "20px", height: "20px", color: "#DC2626" }} />
@@ -264,7 +262,7 @@ export default function CommentsSection() {
           </div>
 
           {/* ── Comments list — max 2 visible, rest scroll behind fade ── */}
-          <div className="flex-1 flex flex-col gap-5 w-full">
+          <div className="flex-1 flex flex-col gap-4 sm:gap-5 w-full">
 
             {/* Global feedback toast */}
             {feedback && (
@@ -372,11 +370,10 @@ export default function CommentsSection() {
                     return (
                       <div
                         key={comment.id}
-                        className="rounded-3xl"
+                        className="rounded-2xl sm:rounded-3xl p-4 sm:p-6"
                         style={{
                           backgroundColor: "#FFFFFF",
                           border: "2px solid #E7E5E4",
-                          padding: "24px",
                           boxShadow: "0 4px 0px #D1D0CF, 0 6px 16px rgba(28,25,23,0.06)",
                           flexShrink: 0,
                         }}
@@ -403,13 +400,13 @@ export default function CommentsSection() {
                         ) : (
                           <>
                             {/* Card header */}
-                            <div className="flex items-start justify-between gap-4 mb-3">
-                              <div className="flex items-center gap-3">
+                            <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                              <div className="flex items-center gap-2.5 sm:gap-3">
                                 <div
-                                  className="flex-shrink-0 flex items-center justify-center rounded-full font-heading font-bold text-white text-base"
+                                  className="flex-shrink-0 flex items-center justify-center rounded-full font-heading font-bold text-white text-sm sm:text-base"
                                   style={{
-                                    width: "44px",
-                                    height: "44px",
+                                    width: "40px",
+                                    height: "40px",
                                     backgroundColor: nameToColor(comment.name),
                                     boxShadow: `0 3px 0px ${nameToColor(comment.name)}99`,
                                   }}
@@ -417,10 +414,10 @@ export default function CommentsSection() {
                                   {getInitial(comment.name)}
                                 </div>
                                 <div>
-                                  <p className="font-heading font-bold text-sm" style={{ color: "#1C1917" }}>
+                                  <p className="font-heading font-bold text-xs sm:text-sm" style={{ color: "#1C1917" }}>
                                     {comment.name}
                                   </p>
-                                  <p className="font-body text-xs" style={{ color: "#A8A29E" }}>
+                                  <p className="font-body text-[10px] sm:text-xs" style={{ color: "#A8A29E" }}>
                                     {formatDate(comment.createdAt)}
                                   </p>
                                 </div>
@@ -428,14 +425,14 @@ export default function CommentsSection() {
 
                               {/* Action buttons — owner only */}
                               {isOwner && (
-                                <div className="flex items-center gap-2 flex-shrink-0">
+                                <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
                                   <button
                                     onClick={() => { setEditingId(comment.id); setConfirmDeleteId(null); }}
                                     className="font-body text-xs font-bold rounded-xl transition-colors duration-200 inline-flex items-center gap-1"
                                     style={{
                                       color: "#78716C",
                                       backgroundColor: "#F5F5F4",
-                                      padding: "6px 12px",
+                                      padding: "5px 10px",
                                       border: "1.5px solid #E7E5E4",
                                       boxShadow: "0 2px 0px #D1D0CF",
                                     }}
@@ -450,7 +447,7 @@ export default function CommentsSection() {
                                     style={{
                                       color: "#DC2626",
                                       backgroundColor: "#FEF2F2",
-                                      padding: "6px 12px",
+                                      padding: "5px 10px",
                                       border: "1.5px solid #FECACA",
                                       boxShadow: "0 2px 0px #FECACA",
                                     }}
@@ -464,24 +461,24 @@ export default function CommentsSection() {
                             </div>
 
                             {/* Message */}
-                            <p className="font-body text-sm leading-relaxed" style={{ color: "#44403C" }}>
+                            <p className="font-body text-xs sm:text-sm leading-relaxed" style={{ color: "#44403C" }}>
                               {comment.message}
                             </p>
 
                             {/* Delete confirm */}
                             {confirmDeleteId === comment.id && (
                               <div
-                                className="flex items-center justify-between gap-4 mt-4 rounded-2xl"
+                                className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mt-3 sm:mt-4 rounded-2xl"
                                 style={{
                                   backgroundColor: "#FEF2F2",
                                   border: "1.5px solid #FECACA",
                                   padding: "12px 16px",
                                 }}
                               >
-                                <p className="font-body text-sm" style={{ color: "#DC2626" }}>
+                                <p className="font-body text-xs sm:text-sm" style={{ color: "#DC2626" }}>
                                   Yakin ingin menghapus komentar ini?
                                 </p>
-                                <div className="flex gap-2 flex-shrink-0">
+                                <div className="flex gap-2 flex-shrink-0 w-full sm:w-auto justify-end">
                                   <button
                                     onClick={() => handleDelete(comment.id)}
                                     disabled={submitting}

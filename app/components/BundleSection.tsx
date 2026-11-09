@@ -12,7 +12,7 @@
  */
 
 import Image from "next/image";
-import { TagIcon, SparklesIcon } from "@heroicons/react/24/solid";
+import { TagIcon, SparklesIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
 const BUNDLE_ITEMS = [
@@ -247,7 +247,8 @@ export default function BundleSection() {
                     className="btn-cta-primary inline-flex items-center justify-center font-body font-bold text-base text-white bg-primary hover:bg-primary-dark rounded-full whitespace-nowrap"
                     style={{ padding: "14px 36px" }}
                   >
-                    🛒 Pesan Sekarang
+                    <ShoppingCartIcon style={{ width: "24px", height: "24px", marginRight: "8px" }} />
+                    Pesan Sekarang
                   </a>
                 </div>
               </div>

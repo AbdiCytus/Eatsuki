@@ -144,30 +144,31 @@ export default function ProductsSection() {
   const products = activeTab === "main" ? MAIN_PRODUCTS : SIDE_PRODUCTS;
   const gridCols =
     activeTab === "main"
-      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+      ? "grid-cols-2 lg:grid-cols-3"
+      : "grid-cols-2 lg:grid-cols-4";
 
   return (
     <section
       id="menu"
-      style={{ backgroundColor: "#FAFAF9", padding: "96px 0" }}
+      className="py-14 lg:py-24"
+      style={{ backgroundColor: "#FAFAF9" }}
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* ── Section header with mascot ── */}
-        <div className="flex flex-col lg:flex-row items-center gap-10 mb-14">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10 mb-10 sm:mb-14">
 
-          {/* Mascot — itsuki.png, bebas tanpa kotak */}
+          {/* Mascot — itsuki.png, bebas tanpa kotak (lebih besar di mobile) */}
           <ScrollAnimationWrapper direction="right" delay={0}>
             <div className="flex-shrink-0 flex items-center justify-center">
               <Image
                 src="/itsuki.png"
                 alt="Itsuki — Maskot Eatsuki"
-                width={240}
-                height={240}
+                width={280}
+                height={280}
                 style={{
                   objectFit: "contain",
-                  width: "clamp(160px, 22vw, 240px)",
+                  width: "clamp(220px, 45vw, 280px)",
                   height: "auto",
                   filter: "drop-shadow(0 8px 16px rgba(220,38,38,0.20))",
                 }}
@@ -256,7 +257,7 @@ export default function ProductsSection() {
         </div>
 
         {/* ── Product grid ── */}
-        <div className={`grid ${gridCols} gap-6`}>
+        <div className={`grid ${gridCols} gap-3 sm:gap-6`}>
           {products.map((product, index) => (
             <ScrollAnimationWrapper
               key={product.name}

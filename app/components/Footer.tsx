@@ -59,7 +59,7 @@ export default function Footer() {
               style={{ color: "#A8A29E" }}
             >
               Solusi cepat dan tepat di waktu lapar. Makan enak nggak perlu
-              tunggu nanti — temukan menu favoritmu bersama Eatsuki!
+              tunggu nanti, temukan menu favoritmu bersama Eatsuki!
             </p>
 
             {/* Mascot quote */}
