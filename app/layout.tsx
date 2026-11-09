@@ -25,13 +25,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Eatsuki — Solusi Cepat dan Tepat di Waktu Lapar",
+  title: "Eatsuki | Landing Page",
   description:
     "Makan Enak Nggak Perlu Tunggu Nanti. Temukan Menu Favoritmu dan Nikmati Tiap Gigitannya Bersama Eatsuki! Makanan cepat saji dan aneka side dish terlezat.",
   keywords: ["eatsuki", "makanan cepat saji", "fast food", "side dish", "burger", "kebab", "rice bowl"],
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Eatsuki — Solusi Cepat dan Tepat di Waktu Lapar",
+    title: "Eatsuki | Landing Page",
     description:
       "Makan Enak Nggak Perlu Tunggu Nanti. Temukan Menu Favoritmu dan Nikmati Tiap Gigitannya Bersama Eatsuki!",
     type: "website",

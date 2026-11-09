@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const NAV_LINKS = [
-  { label: "Tentang", href: "#tentang" },
   { label: "Menu", href: "#menu" },
+  { label: "Tentang", href: "#tentang" },
   { label: "Komentar", href: "#komentar" },
 ];
 
@@ -84,7 +84,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {/* Desktop CTA */}
           <a
-            href="#menu"
+            href="#bundle"
             className="hidden md:inline-flex items-center justify-center font-body font-semibold text-sm text-white rounded-full transition-colors duration-200"
             style={{
               backgroundColor: "#DC2626",
@@ -97,7 +97,7 @@ export default function Navbar() {
               (e.currentTarget.style.backgroundColor = "#DC2626")
             }
           >
-            Lihat Menu
+            Paket Hemat
           </a>
 
           {/* Mobile Hamburger — Heroicon */}
