@@ -1,5 +1,8 @@
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
+import AboutSection from "./components/AboutSection";
+import MainProductsSection from "./components/MainProductsSection";
+import SideProductsSection from "./components/SideProductsSection";
 
 /**
  * Root landing page for Eatsuki.
@@ -11,7 +14,10 @@ export default function Home() {
     <main className="flex flex-col min-h-screen" style={{ backgroundColor: "#FAFAF9" }}>
       <Navbar />
       <HeroSection />
-      {/* More sections will be added in subsequent milestones */}
+      <AboutSection />
+      <MainProductsSection />
+      <SideProductsSection />
+      {/* Bundle, Comments, Footer — coming in next milestones */}
     </main>
   );
 }
