@@ -7,14 +7,7 @@
  */
 
 import Image from "next/image";
-import {
-  FireIcon,
-  GiftIcon,
-  StarIcon,
-  UserGroupIcon,
-  Squares2X2Icon,
-} from "@heroicons/react/24/solid";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { Squares2X2Icon } from "@heroicons/react/24/solid";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
 export default function HeroSection() {
@@ -63,7 +56,8 @@ export default function HeroSection() {
             >
               Solusi <span style={{ color: "#FCA5A5" }}>Cepat</span>
               <br />
-              dan <span style={{ color: "#FCA5A5" }}>Tepat</span> di Waktu Lapar.
+              dan <span style={{ color: "#FCA5A5" }}>Tepat</span> di Waktu
+              Lapar.
             </h1>
           </ScrollAnimationWrapper>
 
