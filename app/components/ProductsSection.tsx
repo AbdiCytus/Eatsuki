@@ -154,30 +154,10 @@ export default function ProductsSection() {
       style={{ backgroundColor: "#FAFAF9" }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
         {/* ── Section header with mascot ── */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10 mb-10 sm:mb-14">
-
-          {/* Mascot — itsuki.png, bebas tanpa kotak (lebih besar di mobile) */}
-          <ScrollAnimationWrapper direction="right" delay={0}>
-            <div className="flex-shrink-0 flex items-center justify-center">
-              <Image
-                src="/itsuki.png"
-                alt="Itsuki — Maskot Eatsuki"
-                width={280}
-                height={280}
-                style={{
-                  objectFit: "contain",
-                  width: "clamp(220px, 45vw, 280px)",
-                  height: "auto",
-                  filter: "drop-shadow(0 8px 16px rgba(220,38,38,0.20))",
-                }}
-              />
-            </div>
-          </ScrollAnimationWrapper>
-
           {/* Text + toggle */}
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 text-center">
             <ScrollAnimationWrapper delay={0}>
               <span
                 className="inline-block font-body font-bold text-sm uppercase tracking-widest mb-4"
@@ -196,8 +176,7 @@ export default function ProductsSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Pilihan Menu{" "}
-                <span style={{ color: "#DC2626" }}>Favoritmu</span>
+                Pilihan Menu <span style={{ color: "#DC2626" }}>Favoritmu</span>
               </h2>
             </ScrollAnimationWrapper>
 
@@ -216,10 +195,13 @@ export default function ProductsSection() {
                   className="font-body font-bold text-sm rounded-xl transition-all duration-200 inline-flex items-center gap-2"
                   style={{
                     padding: "10px 24px",
-                    backgroundColor: activeTab === "main" ? "#DC2626" : "transparent",
+                    backgroundColor:
+                      activeTab === "main" ? "#DC2626" : "transparent",
                     color: activeTab === "main" ? "#FFFFFF" : "#78716C",
-                    boxShadow: activeTab === "main" ? "0 3px 0px #B91C1C" : "none",
-                    transform: activeTab === "main" ? "translateY(-1px)" : "none",
+                    boxShadow:
+                      activeTab === "main" ? "0 3px 0px #B91C1C" : "none",
+                    transform:
+                      activeTab === "main" ? "translateY(-1px)" : "none",
                   }}
                 >
                   <TableCellsIcon style={{ width: "16px", height: "16px" }} />
@@ -230,10 +212,13 @@ export default function ProductsSection() {
                   className="font-body font-bold text-sm rounded-xl transition-all duration-200 inline-flex items-center gap-2"
                   style={{
                     padding: "10px 24px",
-                    backgroundColor: activeTab === "side" ? "#DC2626" : "transparent",
+                    backgroundColor:
+                      activeTab === "side" ? "#DC2626" : "transparent",
                     color: activeTab === "side" ? "#FFFFFF" : "#78716C",
-                    boxShadow: activeTab === "side" ? "0 3px 0px #B91C1C" : "none",
-                    transform: activeTab === "side" ? "translateY(-1px)" : "none",
+                    boxShadow:
+                      activeTab === "side" ? "0 3px 0px #B91C1C" : "none",
+                    transform:
+                      activeTab === "side" ? "translateY(-1px)" : "none",
                   }}
                 >
                   <SparklesIcon style={{ width: "16px", height: "16px" }} />
@@ -268,9 +253,7 @@ export default function ProductsSection() {
             </ScrollAnimationWrapper>
           ))}
         </div>
-
       </div>
     </section>
   );
 }
-
