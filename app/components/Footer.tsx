@@ -12,7 +12,6 @@
 const FOOTER_LINKS = [
   { label: "Tentang", href: "#tentang" },
   { label: "Menu", href: "#menu" },
-  { label: "Paket Hemat", href: "#bundle" },
   { label: "Komentar", href: "#komentar" },
 ];
 
@@ -77,7 +76,7 @@ export default function Footer() {
                 className="font-body text-xs italic"
                 style={{ color: "#D6D3D1" }}
               >
-                &ldquo;Tiap gigitan, penuh semangat!&rdquo; — Itsuki
+                &ldquo;Memakai otakku membuatku lapar!&rdquo; — Itsuki
               </p>
             </div>
           </div>
@@ -115,7 +114,7 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                { icon: "📍", text: "Jakarta, Indonesia" },
+                { icon: "📍", text: "Banjarmasin, Indonesia" },
                 { icon: "🕐", text: "Buka: 09.00 – 22.00 WIB" },
                 { icon: "📱", text: "0812-3456-7890" },
                 { icon: "✉️", text: "halo@eatsuki.id" },
@@ -148,7 +147,7 @@ export default function Footer() {
             className="font-body text-xs"
             style={{ color: "#57534E" }}
           >
-            Made with ❤️ and 🍔 by the Eatsuki team
+            Made by Abdi Prayuda (AbdiCytus)
           </p>
         </div>
       </div>

@@ -16,6 +16,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import CommentForm from "./CommentForm";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
+import {
+  ChatBubbleLeftEllipsisIcon,
+  PencilSquareIcon,
+  TrashIcon,
+  ChatBubbleLeftIcon,
+} from "@heroicons/react/24/outline";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Comment {
@@ -195,9 +201,10 @@ export default function CommentsSection() {
         <div className="text-center mb-14">
           <ScrollAnimationWrapper delay={0}>
             <span
-              className="inline-block font-body font-bold text-sm uppercase tracking-widest mb-4"
+              className="inline-flex items-center gap-2 font-body font-bold text-sm uppercase tracking-widest mb-4"
               style={{ color: "#DC2626" }}
             >
+              <ChatBubbleLeftEllipsisIcon style={{ width: "16px", height: "16px" }} />
               Komentar
             </span>
           </ScrollAnimationWrapper>
@@ -244,10 +251,11 @@ export default function CommentsSection() {
             }}
           >
             <h3
-              className="font-heading font-bold text-lg mb-6"
+              className="font-heading font-bold text-lg mb-6 inline-flex items-center gap-2"
               style={{ color: "#1C1917" }}
             >
-              💬 Tambah Komentar
+              <ChatBubbleLeftIcon style={{ width: "20px", height: "20px", color: "#DC2626" }} />
+              Tambah Komentar
             </h3>
             <CommentForm
               onSubmit={handleCreate}
@@ -255,7 +263,7 @@ export default function CommentsSection() {
             />
           </div>
 
-          {/* ── Comments list ── */}
+          {/* ── Comments list — max 2 visible, rest scroll behind fade ── */}
           <div className="flex-1 flex flex-col gap-5 w-full">
 
             {/* Global feedback toast */}
@@ -343,176 +351,181 @@ export default function CommentsSection() {
               </div>
             )}
 
-            {/* Comment cards */}
-            {status === "success" &&
-              comments.map((comment) => {
-                // Show Edit/Delete only if this comment belongs to the current session
-                const isOwner = comment.sessionId === sessionIdRef.current;
-
-                return (
-                  <div
-                    key={comment.id}
-                    className="rounded-3xl"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "2px solid #E7E5E4",
-                      padding: "24px",
-                      boxShadow: "0 4px 0px #D1D0CF, 0 6px 16px rgba(28,25,23,0.06)",
-                    }}
-                  >
-                    {/* ── Edit mode: show form instead of card content ── */}
-                    {editingId === comment.id ? (
-                      <div>
-                        <p
-                          className="font-heading font-bold text-sm mb-4"
-                          style={{ color: "#DC2626" }}
-                        >
-                          ✏️ Edit Komentar
-                        </p>
-                        <CommentForm
-                          initialName={comment.name}
-                          initialMessage={comment.message}
-                          isEditing
-                          isLoading={submitting}
-                          onSubmit={(data) => handleUpdate(comment.id, data)}
-                          onCancel={() => setEditingId(null)}
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        {/* Card header: avatar + name + date */}
-                        <div className="flex items-start justify-between gap-4 mb-3">
-                          <div className="flex items-center gap-3">
-                            {/* Avatar circle — claymorphism */}
-                            <div
-                              className="flex-shrink-0 flex items-center justify-center rounded-full font-heading font-bold text-white text-base"
-                              style={{
-                                width: "44px",
-                                height: "44px",
-                                backgroundColor: nameToColor(comment.name),
-                                boxShadow: `0 3px 0px ${nameToColor(comment.name)}99`,
-                              }}
-                            >
-                              {getInitial(comment.name)}
-                            </div>
-                            <div>
-                              <p
-                                className="font-heading font-bold text-sm"
-                                style={{ color: "#1C1917" }}
-                              >
-                                {comment.name}
-                              </p>
-                              <p
-                                className="font-body text-xs"
-                                style={{ color: "#A8A29E" }}
-                              >
-                                {formatDate(comment.createdAt)}
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Action buttons — only shown to comment owner */}
-                          {isOwner && (
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              {/* Edit button */}
-                              <button
-                                onClick={() => {
-                                  setEditingId(comment.id);
-                                  setConfirmDeleteId(null);
-                                }}
-                                className="font-body text-xs font-bold rounded-xl transition-colors duration-200"
-                                style={{
-                                  color: "#78716C",
-                                  backgroundColor: "#F5F5F4",
-                                  padding: "6px 12px",
-                                  border: "1.5px solid #E7E5E4",
-                                  boxShadow: "0 2px 0px #D1D0CF",
-                                }}
-                                title="Edit komentar"
-                              >
-                                ✏️ Edit
-                              </button>
-
-                              {/* Delete button */}
-                              <button
-                                onClick={() => {
-                                  setConfirmDeleteId(comment.id);
-                                  setEditingId(null);
-                                }}
-                                className="font-body text-xs font-bold rounded-xl transition-colors duration-200"
-                                style={{
-                                  color: "#DC2626",
-                                  backgroundColor: "#FEF2F2",
-                                  padding: "6px 12px",
-                                  border: "1.5px solid #FECACA",
-                                  boxShadow: "0 2px 0px #FECACA",
-                                }}
-                                title="Hapus komentar"
-                              >
-                                🗑️ Hapus
-                              </button>
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Comment message */}
-                        <p
-                          className="font-body text-sm leading-relaxed"
-                          style={{ color: "#44403C" }}
-                        >
-                          {comment.message}
-                        </p>
-
-                        {/* ── Delete confirmation inline ── */}
-                        {confirmDeleteId === comment.id && (
-                          <div
-                            className="flex items-center justify-between gap-4 mt-4 rounded-2xl"
-                            style={{
-                              backgroundColor: "#FEF2F2",
-                              border: "1.5px solid #FECACA",
-                              padding: "12px 16px",
-                            }}
-                          >
+            {/* Comment cards — max 2 cards visible, rest scrollable */}
+            {status === "success" && comments.length > 0 && (
+              <div style={{ position: "relative" }}>
+                {/* Scrollable container — height ≈ 2 cards */}
+                <div
+                  style={{
+                    maxHeight: "480px",
+                    overflowY: "auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "20px",
+                    paddingBottom: comments.length > 2 ? "32px" : "0",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#E7E5E4 transparent",
+                  }}
+                >
+                  {comments.map((comment) => {
+                    const isOwner = comment.sessionId === sessionIdRef.current;
+                    return (
+                      <div
+                        key={comment.id}
+                        className="rounded-3xl"
+                        style={{
+                          backgroundColor: "#FFFFFF",
+                          border: "2px solid #E7E5E4",
+                          padding: "24px",
+                          boxShadow: "0 4px 0px #D1D0CF, 0 6px 16px rgba(28,25,23,0.06)",
+                          flexShrink: 0,
+                        }}
+                      >
+                        {/* ── Edit mode ── */}
+                        {editingId === comment.id ? (
+                          <div>
                             <p
-                              className="font-body text-sm"
+                              className="font-heading font-bold text-sm mb-4 inline-flex items-center gap-2"
                               style={{ color: "#DC2626" }}
                             >
-                              Yakin ingin menghapus komentar ini?
+                              <PencilSquareIcon style={{ width: "16px", height: "16px" }} />
+                              Edit Komentar
                             </p>
-                            <div className="flex gap-2 flex-shrink-0">
-                              <button
-                                onClick={() => handleDelete(comment.id)}
-                                disabled={submitting}
-                                className="font-body font-bold text-xs text-white rounded-xl disabled:opacity-60"
-                                style={{
-                                  backgroundColor: "#DC2626",
-                                  padding: "6px 14px",
-                                  boxShadow: "0 2px 0px #B91C1C",
-                                }}
-                              >
-                                {submitting ? "..." : "Hapus"}
-                              </button>
-                              <button
-                                onClick={() => setConfirmDeleteId(null)}
-                                disabled={submitting}
-                                className="font-body font-semibold text-xs rounded-xl"
-                                style={{
-                                  color: "#78716C",
-                                  backgroundColor: "#FFFFFF",
-                                  padding: "6px 14px",
-                                  border: "1.5px solid #E7E5E4",
-                                }}
-                              >
-                                Batal
-                              </button>
-                            </div>
+                            <CommentForm
+                              initialName={comment.name}
+                              initialMessage={comment.message}
+                              isEditing
+                              isLoading={submitting}
+                              onSubmit={(data) => handleUpdate(comment.id, data)}
+                              onCancel={() => setEditingId(null)}
+                            />
                           </div>
+                        ) : (
+                          <>
+                            {/* Card header */}
+                            <div className="flex items-start justify-between gap-4 mb-3">
+                              <div className="flex items-center gap-3">
+                                <div
+                                  className="flex-shrink-0 flex items-center justify-center rounded-full font-heading font-bold text-white text-base"
+                                  style={{
+                                    width: "44px",
+                                    height: "44px",
+                                    backgroundColor: nameToColor(comment.name),
+                                    boxShadow: `0 3px 0px ${nameToColor(comment.name)}99`,
+                                  }}
+                                >
+                                  {getInitial(comment.name)}
+                                </div>
+                                <div>
+                                  <p className="font-heading font-bold text-sm" style={{ color: "#1C1917" }}>
+                                    {comment.name}
+                                  </p>
+                                  <p className="font-body text-xs" style={{ color: "#A8A29E" }}>
+                                    {formatDate(comment.createdAt)}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Action buttons — owner only */}
+                              {isOwner && (
+                                <div className="flex items-center gap-2 flex-shrink-0">
+                                  <button
+                                    onClick={() => { setEditingId(comment.id); setConfirmDeleteId(null); }}
+                                    className="font-body text-xs font-bold rounded-xl transition-colors duration-200 inline-flex items-center gap-1"
+                                    style={{
+                                      color: "#78716C",
+                                      backgroundColor: "#F5F5F4",
+                                      padding: "6px 12px",
+                                      border: "1.5px solid #E7E5E4",
+                                      boxShadow: "0 2px 0px #D1D0CF",
+                                    }}
+                                    title="Edit komentar"
+                                  >
+                                    <PencilSquareIcon style={{ width: "13px", height: "13px" }} />
+                                    Edit
+                                  </button>
+                                  <button
+                                    onClick={() => { setConfirmDeleteId(comment.id); setEditingId(null); }}
+                                    className="font-body text-xs font-bold rounded-xl transition-colors duration-200 inline-flex items-center gap-1"
+                                    style={{
+                                      color: "#DC2626",
+                                      backgroundColor: "#FEF2F2",
+                                      padding: "6px 12px",
+                                      border: "1.5px solid #FECACA",
+                                      boxShadow: "0 2px 0px #FECACA",
+                                    }}
+                                    title="Hapus komentar"
+                                  >
+                                    <TrashIcon style={{ width: "13px", height: "13px" }} />
+                                    Hapus
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Message */}
+                            <p className="font-body text-sm leading-relaxed" style={{ color: "#44403C" }}>
+                              {comment.message}
+                            </p>
+
+                            {/* Delete confirm */}
+                            {confirmDeleteId === comment.id && (
+                              <div
+                                className="flex items-center justify-between gap-4 mt-4 rounded-2xl"
+                                style={{
+                                  backgroundColor: "#FEF2F2",
+                                  border: "1.5px solid #FECACA",
+                                  padding: "12px 16px",
+                                }}
+                              >
+                                <p className="font-body text-sm" style={{ color: "#DC2626" }}>
+                                  Yakin ingin menghapus komentar ini?
+                                </p>
+                                <div className="flex gap-2 flex-shrink-0">
+                                  <button
+                                    onClick={() => handleDelete(comment.id)}
+                                    disabled={submitting}
+                                    className="font-body font-bold text-xs text-white rounded-xl disabled:opacity-60"
+                                    style={{ backgroundColor: "#DC2626", padding: "6px 14px", boxShadow: "0 2px 0px #B91C1C" }}
+                                  >
+                                    {submitting ? "..." : "Hapus"}
+                                  </button>
+                                  <button
+                                    onClick={() => setConfirmDeleteId(null)}
+                                    disabled={submitting}
+                                    className="font-body font-semibold text-xs rounded-xl"
+                                    style={{ color: "#78716C", backgroundColor: "#FFFFFF", padding: "6px 14px", border: "1.5px solid #E7E5E4" }}
+                                  >
+                                    Batal
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+                          </>
                         )}
-                      </>
-                    )}
-                  </div>
-                );
-              })}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Fade overlay — signals more comments below when list overflows */}
+                {comments.length > 2 && (
+                  <div
+                    aria-hidden
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "80px",
+                      background: "linear-gradient(to bottom, transparent, #FAFAF9)",
+                      pointerEvents: "none",
+                      zIndex: 1,
+                    }}
+                  />
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

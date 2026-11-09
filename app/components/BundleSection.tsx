@@ -12,6 +12,7 @@
  */
 
 import Image from "next/image";
+import { TagIcon, SparklesIcon } from "@heroicons/react/24/solid";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
 const BUNDLE_ITEMS = [
@@ -51,13 +52,14 @@ export default function BundleSection() {
         <div className="text-center mb-14">
           <ScrollAnimationWrapper delay={0}>
             <span
-              className="inline-block font-body font-bold text-sm uppercase tracking-widest mb-4 rounded-full"
+              className="inline-flex items-center gap-2 font-body font-bold text-sm uppercase tracking-widest mb-4 rounded-full"
               style={{
                 color: "#DC2626",
                 backgroundColor: "#FFFFFF",
                 padding: "6px 18px",
               }}
             >
+              <TagIcon style={{ width: "14px", height: "14px" }} />
               Penawaran Spesial
             </span>
           </ScrollAnimationWrapper>
@@ -136,10 +138,11 @@ export default function BundleSection() {
                   />
                 </div>
                 <p
-                  className="font-body font-bold text-sm text-center"
+                  className="font-body font-bold text-sm text-center inline-flex items-center gap-1"
                   style={{ color: "#DC2626" }}
                 >
-                  ✨ Rekomendasi Itsuki!
+                  <SparklesIcon style={{ width: "14px", height: "14px" }} />
+                  Rekomendasi Itsuki!
                 </p>
               </div>
 

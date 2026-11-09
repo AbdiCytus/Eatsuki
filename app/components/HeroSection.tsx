@@ -1,23 +1,20 @@
 /**
  * HeroSection — Server Component
  *
- * The main landing hero for Eatsuki.
- * Background: itsuki_banner.webp image (via next/image fill + absolute position).
- * Semi-transparent overlay ensures all existing text remains readable.
- * No decorative blobs, no gradients — claymorphism badge & stat chips.
- *
- * Layout (desktop): two-column — text on the left.
- * Layout (mobile): stacked, full banner background.
- *
- * Content (preserved exactly):
- *   - Badge label
- *   - Headline
- *   - Tagline / subheadline
- *   - Two CTA buttons
- *   - Stats row
+ * Background: itsuki_banner.webp with solid dark overlay.
+ * Uses Heroicons for action/badge icons. No gradients.
+ * All original text content preserved exactly.
  */
 
 import Image from "next/image";
+import {
+  FireIcon,
+  GiftIcon,
+  StarIcon,
+  UserGroupIcon,
+  Squares2X2Icon,
+} from "@heroicons/react/24/solid";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
 export default function HeroSection() {
@@ -36,7 +33,7 @@ export default function HeroSection() {
         style={{ objectFit: "cover", objectPosition: "center" }}
       />
 
-      {/* ── Dark overlay for text readability (no gradient — solid) ── */}
+      {/* ── Dark overlay — solid, no gradient ── */}
       <div
         aria-hidden
         style={{
@@ -65,7 +62,8 @@ export default function HeroSection() {
                 boxShadow: "0 3px 0px #B91C1C",
               }}
             >
-              🍔 Makanan Favoritmu Ada di Sini
+              <FireIcon style={{ width: "16px", height: "16px" }} />
+              Makanan Favoritmu Ada di Sini
             </span>
           </ScrollAnimationWrapper>
 
@@ -105,16 +103,17 @@ export default function HeroSection() {
               {/* Primary CTA */}
               <a
                 href="#menu"
-                className="btn-cta-primary inline-flex items-center justify-center font-body font-bold text-base text-white bg-primary hover:bg-primary-dark rounded-full"
+                className="btn-cta-primary inline-flex items-center justify-center gap-2 font-body font-bold text-base text-white bg-primary hover:bg-primary-dark rounded-full"
                 style={{ padding: "14px 32px" }}
               >
-                🍽️ Lihat Menu
+                <Squares2X2Icon style={{ width: "20px", height: "20px" }} />
+                Lihat Menu
               </a>
 
-              {/* Secondary CTA — solid border, no gradient */}
+              {/* Secondary CTA */}
               <a
                 href="#bundle"
-                className="inline-flex items-center justify-center font-body font-semibold text-base rounded-full transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 font-body font-semibold text-base rounded-full transition-colors duration-200"
                 style={{
                   padding: "14px 32px",
                   border: "2px solid rgba(255,255,255,0.60)",
@@ -122,7 +121,8 @@ export default function HeroSection() {
                   backgroundColor: "rgba(255,255,255,0.10)",
                 }}
               >
-                🎁 Paket Hemat
+                <GiftIcon style={{ width: "20px", height: "20px" }} />
+                Paket Hemat
               </a>
             </div>
           </ScrollAnimationWrapper>
@@ -131,9 +131,9 @@ export default function HeroSection() {
           <ScrollAnimationWrapper delay={320}>
             <div className="flex items-center gap-4 mt-10 flex-wrap">
               {[
-                { value: "50+", label: "Menu Pilihan" },
-                { value: "1000+", label: "Pelanggan Puas" },
-                { value: "⭐ 4.9", label: "Rating" },
+                { icon: <Squares2X2Icon style={{ width: "16px", height: "16px" }} />, value: "50+", label: "Menu Pilihan" },
+                { icon: <UserGroupIcon style={{ width: "16px", height: "16px" }} />, value: "1000+", label: "Pelanggan Puas" },
+                { icon: <StarIcon style={{ width: "16px", height: "16px" }} />, value: "4.9", label: "Rating" },
               ].map((stat) => (
                 <div
                   key={stat.label}
@@ -147,9 +147,12 @@ export default function HeroSection() {
                     WebkitBackdropFilter: "blur(6px)",
                   }}
                 >
-                  <p className="font-heading font-bold text-xl" style={{ color: "#FFFFFF" }}>
-                    {stat.value}
-                  </p>
+                  <div className="flex items-center justify-center gap-1 mb-1" style={{ color: "#FCA5A5" }}>
+                    {stat.icon}
+                    <p className="font-heading font-bold text-lg" style={{ color: "#FFFFFF" }}>
+                      {stat.value}
+                    </p>
+                  </div>
                   <p className="font-body text-xs" style={{ color: "#E7E5E4" }}>
                     {stat.label}
                   </p>

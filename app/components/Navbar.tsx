@@ -4,14 +4,12 @@
  * Navbar
  *
  * Sticky top navigation bar for Eatsuki landing page.
- * Features:
- *   - Brand logo with accent color
- *   - Smooth-scroll anchor links (desktop)
- *   - Hamburger menu (mobile, toggleable)
- *   - Background blur + shadow on scroll
+ * Layout: [Brand | NavLinks] ............ [CTA Button] [Hamburger]
+ * Nav links sit immediately to the right of the brand name (left-aligned).
  */
 
 import { useEffect, useState } from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const NAV_LINKS = [
   { label: "Tentang", href: "#tentang" },
@@ -47,88 +45,79 @@ export default function Navbar() {
       }}
     >
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* ── Brand Logo ── */}
-        <a
-          href="#"
-          className="font-heading font-extrabold text-2xl tracking-tight"
-          style={{ color: "#DC2626" }}
-          aria-label="Eatsuki — Beranda"
-        >
-          Eat<span style={{ color: "#1C1917" }}>suki</span>
-        </a>
 
-        {/* ── Desktop Nav Links ── */}
-        <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="font-body font-medium text-sm transition-colors duration-200"
-                style={{ color: "#78716C" }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#DC2626")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "#78716C")
-                }
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* ── Left side: Brand + Nav Links ── */}
+        <div className="flex items-center gap-8">
+          {/* Brand Logo */}
+          <a
+            href="#"
+            className="font-heading font-extrabold text-2xl tracking-tight flex-shrink-0"
+            style={{ color: "#DC2626" }}
+            aria-label="Eatsuki — Beranda"
+          >
+            Eat<span style={{ color: "#1C1917" }}>suki</span>
+          </a>
 
-        {/* ── Desktop CTA ── */}
-        <a
-          href="#menu"
-          className="hidden md:inline-flex items-center justify-center font-body font-semibold text-sm text-white rounded-full transition-colors duration-200"
-          style={{
-            backgroundColor: "#DC2626",
-            padding: "10px 24px",
-          }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor = "#B91C1C")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = "#DC2626")
-          }
-        >
-          Lihat Menu
-        </a>
+          {/* Desktop Nav Links — right next to brand */}
+          <ul className="hidden md:flex items-center gap-6">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="font-body font-medium text-sm transition-colors duration-200"
+                  style={{ color: "#78716C" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#DC2626")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "#78716C")
+                  }
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        {/* ── Mobile Hamburger ── */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 rounded-lg transition-colors duration-200"
-          style={{ color: "#1C1917" }}
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
-          aria-expanded={menuOpen}
-        >
-          {/* Three bars → animate to X when open */}
-          <span
-            className="block h-0.5 w-6 rounded-full transition-all duration-300"
+        {/* ── Right side: CTA + Hamburger ── */}
+        <div className="flex items-center gap-3">
+          {/* Desktop CTA */}
+          <a
+            href="#menu"
+            className="hidden md:inline-flex items-center justify-center font-body font-semibold text-sm text-white rounded-full transition-colors duration-200"
             style={{
-              backgroundColor: "#1C1917",
-              transform: menuOpen ? "translateY(8px) rotate(45deg)" : "none",
+              backgroundColor: "#DC2626",
+              padding: "10px 24px",
             }}
-          />
-          <span
-            className="block h-0.5 w-6 rounded-full transition-all duration-300"
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#B91C1C")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#DC2626")
+            }
+          >
+            Lihat Menu
+          </a>
+
+          {/* Mobile Hamburger — Heroicon */}
+          <button
+            className="md:hidden flex items-center justify-center p-2 rounded-xl transition-colors duration-200"
             style={{
-              backgroundColor: "#1C1917",
-              opacity: menuOpen ? 0 : 1,
+              color: "#1C1917",
+              backgroundColor: menuOpen ? "#F5F5F4" : "transparent",
             }}
-          />
-          <span
-            className="block h-0.5 w-6 rounded-full transition-all duration-300"
-            style={{
-              backgroundColor: "#1C1917",
-              transform: menuOpen
-                ? "translateY(-8px) rotate(-45deg)"
-                : "none",
-            }}
-          />
-        </button>
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? (
+              <XMarkIcon style={{ width: "24px", height: "24px" }} />
+            ) : (
+              <Bars3Icon style={{ width: "24px", height: "24px" }} />
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* ── Mobile Dropdown Menu ── */}
@@ -176,4 +165,3 @@ export default function Navbar() {
     </header>
   );
 }
-

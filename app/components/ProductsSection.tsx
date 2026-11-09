@@ -14,6 +14,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ProductCard from "./ProductCard";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
+import { TableCellsIcon, SparklesIcon } from "@heroicons/react/24/solid";
 
 // ── Product data ─────────────────────────────────────────────────────────────
 
@@ -156,25 +157,20 @@ export default function ProductsSection() {
         {/* ── Section header with mascot ── */}
         <div className="flex flex-col lg:flex-row items-center gap-10 mb-14">
 
-          {/* Mascot — itsuki.png */}
+          {/* Mascot — itsuki.png, bebas tanpa kotak */}
           <ScrollAnimationWrapper direction="right" delay={0}>
-            <div
-              className="flex-shrink-0 flex items-center justify-center rounded-3xl"
-              style={{
-                width: "clamp(160px, 22vw, 240px)",
-                height: "clamp(160px, 22vw, 240px)",
-                backgroundColor: "#FFF1F2",
-                border: "3px solid #FECACA",
-                boxShadow: "0 6px 0px #FECACA, 0 10px 24px rgba(220,38,38,0.12)",
-                overflow: "hidden",
-              }}
-            >
+            <div className="flex-shrink-0 flex items-center justify-center">
               <Image
                 src="/itsuki.png"
                 alt="Itsuki — Maskot Eatsuki"
-                width={220}
-                height={220}
-                style={{ objectFit: "contain", width: "90%", height: "90%" }}
+                width={240}
+                height={240}
+                style={{
+                  objectFit: "contain",
+                  width: "clamp(160px, 22vw, 240px)",
+                  height: "auto",
+                  filter: "drop-shadow(0 8px 16px rgba(220,38,38,0.20))",
+                }}
               />
             </div>
           </ScrollAnimationWrapper>
@@ -216,7 +212,7 @@ export default function ProductsSection() {
               >
                 <button
                   onClick={() => setActiveTab("main")}
-                  className="font-body font-bold text-sm rounded-xl transition-all duration-200"
+                  className="font-body font-bold text-sm rounded-xl transition-all duration-200 inline-flex items-center gap-2"
                   style={{
                     padding: "10px 24px",
                     backgroundColor: activeTab === "main" ? "#DC2626" : "transparent",
@@ -225,11 +221,12 @@ export default function ProductsSection() {
                     transform: activeTab === "main" ? "translateY(-1px)" : "none",
                   }}
                 >
-                  🍔 Menu Utama
+                  <TableCellsIcon style={{ width: "16px", height: "16px" }} />
+                  Menu Utama
                 </button>
                 <button
                   onClick={() => setActiveTab("side")}
-                  className="font-body font-bold text-sm rounded-xl transition-all duration-200"
+                  className="font-body font-bold text-sm rounded-xl transition-all duration-200 inline-flex items-center gap-2"
                   style={{
                     padding: "10px 24px",
                     backgroundColor: activeTab === "side" ? "#DC2626" : "transparent",
@@ -238,7 +235,8 @@ export default function ProductsSection() {
                     transform: activeTab === "side" ? "translateY(-1px)" : "none",
                   }}
                 >
-                  🥟 Side Dish
+                  <SparklesIcon style={{ width: "16px", height: "16px" }} />
+                  Side Dish
                 </button>
               </div>
             </ScrollAnimationWrapper>

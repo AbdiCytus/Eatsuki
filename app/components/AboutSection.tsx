@@ -1,29 +1,36 @@
 /**
  * AboutSection — Server Component
  *
- * Presents the Eatsuki brand story and three key selling points.
- * Layout: heading + itsuki_1.jpg photo on the left, feature cards on the right.
- * Claymorphism cards: solid fill, puffy box-shadow, no gradient.
+ * Brand story + three selling points.
+ * Background: itsuki_1.jpg as section background image (left side),
+ * with a white shadow layer on the right to blend into the content area.
+ * Heroicons replace emoji in feature cards.
+ * No decorative gradients — the white right-shadow is a functional overlay.
  */
 
 import Image from "next/image";
+import {
+  BoltIcon,
+  FaceSmileIcon,
+  BanknotesIcon,
+} from "@heroicons/react/24/solid";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 
 const FEATURES = [
   {
-    icon: "⚡",
+    icon: <BoltIcon style={{ width: "24px", height: "24px" }} />,
     title: "Cepat & Praktis",
     description:
       "Nggak perlu nunggu lama. Menu kami disiapkan dengan cepat tanpa mengorbankan cita rasa.",
   },
   {
-    icon: "😋",
+    icon: <FaceSmileIcon style={{ width: "24px", height: "24px" }} />,
     title: "Rasa yang Autentik",
     description:
       "Dibuat dari bahan pilihan berkualitas tinggi, setiap gigitan menghadirkan kelezatan yang nyata.",
   },
   {
-    icon: "💰",
+    icon: <BanknotesIcon style={{ width: "24px", height: "24px" }} />,
     title: "Harga Bersahabat",
     description:
       "Makan enak nggak harus mahal. Nikmati menu favorit dengan harga yang tetap di kantong.",
@@ -37,7 +44,7 @@ export default function AboutSection() {
       className="relative overflow-hidden"
       style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}
     >
-      {/* Solid accent bar — no gradient */}
+      {/* ── Solid accent bar ── */}
       <div
         aria-hidden
         style={{
@@ -50,10 +57,46 @@ export default function AboutSection() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-6">
+      {/* ── itsuki_1.jpg as background — left side ── */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "45%",
+          bottom: 0,
+          zIndex: 0,
+        }}
+      >
+        <Image
+          src="/itsuki_1.jpg"
+          alt=""
+          fill
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+        {/* White shadow layer on the RIGHT side of the image — fades into section bg */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: "60%",
+            background: "linear-gradient(to right, transparent, #FFFFFF)",
+            zIndex: 1,
+          }}
+        />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 relative" style={{ zIndex: 2 }}>
         <div className="flex flex-col lg:flex-row gap-16 items-start">
 
-          {/* ── Left: Brand story + photo ── */}
+          {/* ── Left: spacer (image shows through) ── */}
+          <div className="hidden lg:block flex-1" />
+
+          {/* ── Right: Brand story + feature cards ── */}
           <div className="flex-1">
             <ScrollAnimationWrapper delay={0}>
               <span
@@ -92,7 +135,7 @@ export default function AboutSection() {
 
             <ScrollAnimationWrapper delay={240}>
               <p
-                className="font-body text-lg leading-relaxed mb-8"
+                className="font-body text-lg leading-relaxed mb-10"
                 style={{ color: "#78716C", maxWidth: "480px" }}
               >
                 Dari burger juicy, kebab gurih, hingga side dish yang
@@ -103,75 +146,57 @@ export default function AboutSection() {
               </p>
             </ScrollAnimationWrapper>
 
-            {/* itsuki_1.jpg — decorative photo */}
-            <ScrollAnimationWrapper delay={300}>
-              <div
-                className="rounded-3xl overflow-hidden"
-                style={{
-                  maxWidth: "420px",
-                  border: "3px solid #E7E5E4",
-                  boxShadow: "0 6px 0px #D1D0CF, 0 10px 24px rgba(28,25,23,0.10)",
-                }}
-              >
-                <Image
-                  src="/itsuki_1.jpg"
-                  alt="Suasana seru bersama Eatsuki"
-                  width={420}
-                  height={260}
-                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
-                />
-              </div>
-            </ScrollAnimationWrapper>
-          </div>
-
-          {/* ── Right: Feature cards ── */}
-          <div className="flex-1 flex flex-col gap-6">
-            {FEATURES.map((feature, index) => (
-              <ScrollAnimationWrapper
-                key={feature.title}
-                direction="right"
-                delay={index * 120}
-              >
-                <div
-                  className="flex items-start gap-5 rounded-3xl"
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "2px solid #E7E5E4",
-                    padding: "24px",
-                    boxShadow: "0 4px 0px #D1D0CF, 0 6px 16px rgba(28,25,23,0.07)",
-                  }}
+            {/* Feature cards */}
+            <div className="flex flex-col gap-5">
+              {FEATURES.map((feature, index) => (
+                <ScrollAnimationWrapper
+                  key={feature.title}
+                  direction="right"
+                  delay={index * 120}
                 >
                   <div
-                    className="flex-shrink-0 flex items-center justify-center rounded-2xl text-2xl"
+                    className="flex items-start gap-5 rounded-3xl"
                     style={{
-                      width: "52px",
-                      height: "52px",
-                      backgroundColor: "#FFF1F2",
-                      border: "2px solid #FECACA",
-                      boxShadow: "0 3px 0px #FECACA",
+                      backgroundColor: "#FFFFFF",
+                      border: "2px solid #E7E5E4",
+                      padding: "24px",
+                      boxShadow: "0 4px 0px #D1D0CF, 0 6px 16px rgba(28,25,23,0.07)",
                     }}
                   >
-                    {feature.icon}
-                  </div>
+                    {/* Icon badge */}
+                    <div
+                      className="flex-shrink-0 flex items-center justify-center rounded-2xl"
+                      style={{
+                        width: "52px",
+                        height: "52px",
+                        backgroundColor: "#FFF1F2",
+                        border: "2px solid #FECACA",
+                        boxShadow: "0 3px 0px #FECACA",
+                        color: "#DC2626",
+                      }}
+                    >
+                      {feature.icon}
+                    </div>
 
-                  {/* Text */}
-                  <div>
-                    <h3
-                      className="font-heading font-bold text-lg mb-1"
-                      style={{ color: "#1C1917" }}
-                    >
-                      {feature.title}
-                    </h3>
-                    <p
-                      className="font-body text-sm leading-relaxed"
-                      style={{ color: "#78716C" }}
-                    >
-                      {feature.description}
-                    </p>
+                    {/* Text */}
+                    <div>
+                      <h3
+                        className="font-heading font-bold text-lg mb-1"
+                        style={{ color: "#1C1917" }}
+                      >
+                        {feature.title}
+                      </h3>
+                      <p
+                        className="font-body text-sm leading-relaxed"
+                        style={{ color: "#78716C" }}
+                      >
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </ScrollAnimationWrapper>
-            ))}
+                </ScrollAnimationWrapper>
+              ))}
+            </div>
           </div>
 
         </div>
@@ -179,4 +204,3 @@ export default function AboutSection() {
     </section>
   );
 }
-
