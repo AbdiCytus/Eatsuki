@@ -134,7 +134,7 @@ export default function BundleSection() {
                     alt="Itsuki merekomendasikan paket hemat"
                     width={170}
                     height={170}
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "contain", borderRadius: "100%" }}
                   />
                 </div>
                 <p
